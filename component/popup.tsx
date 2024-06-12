@@ -20,17 +20,14 @@ const Popup = ({ image, handler }: { image: any; handler: any }) => {
 	}, [image])
 	return (
 		<div className='w-full h-full flex flex-col items-center overflow-hidden gap-5 relative'>
-			{/* <div className='absolute right-0 top-0'>
-				<IoClose className='text-white' onClick={() => { handler() }} />
-			</div> */}
-			<div>
+			<div className='flex flex-col items-center justify-center gap-5'>
 				<img src={image?.images.original.url} alt={image?.title} className={`mt-5 ${imageSizes}`} />
-			</div>
-			<div className='flex flex-row text-white'>
-				<div className="hover:cursor-pointer ml-5" onClick={() => {setImagesSizes("h-[30px] w-[30px]"); console.log("hello at default")}}>default</div>
-				<div className="hover:cursor-pointer ml-5" onClick={() => setImagesSizes("h-[50px] w-[50px]")}>medium</div>
-				<div className="hover:cursor-pointer ml-5" onClick={() => setImagesSizes("h-[70px] w-[70px]")}>big</div>
-				<div className="hover:cursor-pointer ml-5" onClick={() => setImagesSizes("h-[90px] w-[90px]")}>larg</div>
+				<div className=' flex flex-row w-full justify-center text-white gap-5 mt-5'>
+					<div className="hover:cursor-pointer w-auto h-auto" onClick={() => { setImagesSizes("h-[30px] w-[30px]"); console.log("hello at default") }}>default</div>
+					<div className="hover:cursor-pointer w-auto h-auto" onClick={() => setImagesSizes("h-[50px] w-[50px]")}>medium</div>
+					<div className="hover:cursor-pointer w-auto h-auto" onClick={() => setImagesSizes("h-[70px] w-[70px]")}>big</div>
+					<div className="hover:cursor-pointer w-auto h-auto" onClick={() => setImagesSizes("h-[90px] w-[90px]")}>large</div>
+				</div>
 			</div>
 			<div >
 				<h1 className='text-white mt-5'>
