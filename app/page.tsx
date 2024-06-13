@@ -7,6 +7,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 
 export default function Home() {
+  const apiKey = process.env.API_KEY
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [images, setImages] = useState<[]>([]);
@@ -20,8 +21,8 @@ export default function Home() {
   const fetchImages = async (query: string | null) => {
     try {
       const url = query
-        ? `https://api.giphy.com/v1/gifs/search?api_key=UC6QeKH1sTZwo7OgHc1oAJJu4JFV59TJ&q=${query}&limit=25&offset=0&lang=en&bundle=messaging_non_clips`
-        : `https://api.giphy.com/v1/gifs/trending?api_key=UC6QeKH1sTZwo7OgHc1oAJJu4JFV59TJ&limit=25&offset=0&lang=en&bundle=messaging_non_clips`;
+        ? `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=25&offset=0&lang=en&bundle=messaging_non_clips`
+        : `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=25&offset=0&lang=en&bundle=messaging_non_clips`;
 
       const response = await axios.get(url);
       const untreatedImages = response.data.data;
@@ -66,7 +67,7 @@ export default function Home() {
           setSelectedImage(null);
         }} />
       ) : (
-        <>
+        <div className="w-full h-full flex justify-center flex-col gap-3 items-center">
           <div className="w-[20%] h-[1%] mt-5">
             <input
               type="text"
@@ -84,11 +85,11 @@ export default function Home() {
                   alt={image?.title}
                   onClick={() => modlarClickHandler(image)}
                 />
-                {image?.import_datetime}
+                {image?.title}
               </div>
             ))}
           </div>
-        </>
+        </div>
       )}
     </main>
   );
