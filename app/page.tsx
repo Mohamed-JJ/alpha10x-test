@@ -21,7 +21,7 @@ export default function Home() {
   const fetchImages = async (query: string | null) => {
     try {
       const url = query
-        ? `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}&limit=25&offset=0&lang=en&bundle=messaging_non_clips`
+        ? `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query.substring(0, 40)}&limit=25&offset=0&lang=en&bundle=messaging_non_clips`
         : `https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=25&offset=0&lang=en&bundle=messaging_non_clips`;
 
       const response = await axios.get(url);
@@ -60,7 +60,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className={`w-full h-full flex justify-center flex-col gap-3 items-center`}>
+    <main className={`w-full h-full flex justify-center flex-col gap-3 my-5 mx-auto`}>
       {modlar ? (
         <Popup image={selectedImage} handler={() => {
           setModlar(false);
@@ -68,19 +68,19 @@ export default function Home() {
         }} />
       ) : (
         <div className="w-full h-full flex justify-center flex-col gap-3 items-center">
-          <div className="w-[20%] h-[1%] mt-5">
+          <div className="mt-5">
             <input
               type="text"
-              className="text-black"
+              className="text-black rounded-2xl p-2 "
               placeholder="search gif"
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <div className="h-full w-[50%] flex items-center flex-wrap gap-4 mt-5">
+          <div className="h-full w-[50%] flex items-center justify-center flex-wrap gap-4 mt-5 ">
             {images.map((image: any, index: any) => (
-              <div key={index} className="h-auto w-[20%] text-white">
+              <div key={index} className="h-auto w-[20%] text-white bg-slate-800 p-3 rounded-2xl flex flex-col items-center justify-center gap-4">
                 <img
-                  className="h-auto w-full"
+                  className="h-auto w-full rounded-2xl hover:cursor-pointer"
                   src={image?.images.original.url}
                   alt={image?.title}
                   onClick={() => modlarClickHandler(image)}

@@ -10,13 +10,12 @@ const Popup = ({ image, handler }: { image: any; handler: any }) => {
 	useEffect(() => {
 		setImagesSizes(`h-auto w-[150px]`);
 		const fetchRelatedContent = async () => {
-			const imgs = await axios.get(`https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(image.title)}&api_key=${apiKey}&gif_id=${image.id}`);
+			const imgs = await axios.get(`https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(image.title.substring(0, 40))}&api_key=${apiKey}&gif_id=${image.id}`);
 			const untreatedImages = imgs.data.data;
 			const sortedd_dates = untreatedImages.sort((a: any, b: any) => {
 				return Number(new Date(b.import_datetime)) - Number(new Date(a.import_datetime));
 			});
 			const filteredimgs = sortedd_dates.filter((img: any) => img.username && img.username !== "");
-			console.log(filteredimgs);
 			setRelatedContent(filteredimgs)
 		}
 		fetchRelatedContent();
