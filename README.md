@@ -2,7 +2,25 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, run the dependencies installation command to install the used modules and packages with :
+
+```bash
+npm i
+# or
+pnpm install
+# or
+yarn install
+# or
+bun install
+```
+
+Second, add a .env.locsl file and get an api key from [`Giphy`](https://developers.giphy.com/) after creating an account and creating the api key, and add it in this format to the enviroment file
+
+```
+API_KEY=<giphey api key>
+```
+
+Finally, run the development server:
 
 ```bash
 npm run dev
@@ -13,6 +31,8 @@ pnpm dev
 # or
 bun dev
 ```
+
+second
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
