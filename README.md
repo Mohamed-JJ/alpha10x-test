@@ -14,7 +14,7 @@ yarn install
 bun install
 ```
 
-Second, add a .env.locsl file and get an api key from [`Giphy`](https://developers.giphy.com/) after creating an account and creating the api key, and add it in this format to the enviroment file
+Second, add a .env.local file and get an api key from [`Giphy`](https://developers.giphy.com/) after creating an account and creating the api key, and add it in this format to the enviroment file
 
 ```
 API_KEY=<giphey api key>
